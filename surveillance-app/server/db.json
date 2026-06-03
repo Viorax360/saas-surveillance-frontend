@@ -1,0 +1,57 @@
+{
+  "metrics": {
+    "activeCameras": {
+      "current": 12,
+      "total": 16,
+      "trend": "4 active",
+      "trendPeriod": "this week"
+    },
+    "alerts": {
+      "count": 3,
+      "trend": "12% decrease",
+      "trendPeriod": "vs yesterday"
+    },
+    "storage": {
+      "used": "1.4 TB",
+      "capacityRemains": "74%"
+    },
+    "cpu": {
+      "load": "28%",
+      "status": "Optimal"
+    }
+  },
+  "cameras": [
+    {
+      "id": "CAM-01",
+      "name": "Main Lobby",
+      "resolution": "1080p",
+      "fps": 30,
+      "status": "REC",
+      "motionDetected": false
+    },
+    {
+      "id": "CAM-02",
+      "name": "Parking Lot A",
+      "resolution": "4K UHD",
+      "fps": 24,
+      "status": "REC",
+      "motionDetected": true
+    },
+    {
+      "id": "CAM-03",
+      "name": "Server Room",
+      "resolution": "1080p",
+      "fps": 60,
+      "status": "REC",
+      "motionDetected": false
+    },
+    {
+      "id": "CAM-04",
+      "name": "Loading Dock",
+      "resolution": "Connection Lost",
+      "fps": null,
+      "status": "OFFLINE",
+      "motionDetected": false
+    }
+  ]
+}

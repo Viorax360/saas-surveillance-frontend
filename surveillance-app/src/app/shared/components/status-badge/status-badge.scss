@@ -1,0 +1,74 @@
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    /* Forma de píldora */
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background-color: #1e1e1e;
+    /* Gris muy oscuro, casi negro */
+    color: #a0a0a0;
+    border: 1px solid #333;
+    /* Borde sutil para darle volumen */
+
+    .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+    }
+
+    /* Estados dinámicos */
+    &.online {
+        color: #4ade80;
+        /* Verde brillante */
+        border-color: rgba(74, 222, 128, 0.2);
+        background-color: rgba(74, 222, 128, 0.05);
+
+        .dot {
+            background-color: #4ade80;
+            box-shadow: 0 0 8px rgba(74, 222, 128, 0.6);
+        }
+    }
+
+    &.offline {
+        color: #8c7a6b;
+        /* Un tono marrón grisáceo apagado */
+        border-color: rgba(140, 122, 107, 0.2);
+
+        .dot {
+            background-color: #8c7a6b;
+        }
+    }
+
+    &.motion {
+        color: #f87171;
+        /* Rojo alerta */
+        border-color: rgba(248, 113, 113, 0.2);
+        background-color: rgba(248, 113, 113, 0.05);
+        animation: pulse 2s infinite;
+        /* Animación de alerta */
+
+        .dot {
+            background-color: #f87171;
+            box-shadow: 0 0 8px rgba(248, 113, 113, 0.6);
+        }
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(248, 113, 113, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 6px rgba(248, 113, 113, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(248, 113, 113, 0);
+    }
+}
