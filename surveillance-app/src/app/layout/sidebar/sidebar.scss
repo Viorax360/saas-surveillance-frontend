@@ -1,0 +1,135 @@
+.sidebar-container {
+  width: 260px;
+  height: 100vh;
+  background-color: #0d101d;
+  /* Un tono levísimamente diferente al fondo principal */
+  border-right: 1px solid #1a1d2d;
+  display: flex;
+  flex-direction: column;
+  color: #a0a4b8;
+}
+
+/* --- LOGO --- */
+.brand-header {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  gap: 0.75rem;
+  border-bottom: 1px solid #1a1d2d;
+
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .inner-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #ffffff;
+      border-radius: 50%;
+    }
+  }
+
+  .brand-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    letter-spacing: 0.5px;
+
+    span {
+      color: #8b5cf6;
+      /* El morado de Viorex360 */
+    }
+  }
+}
+
+/* --- MENÚ --- */
+.nav-menu {
+  flex: 1;
+  /* Ocupa el espacio restante empujando el perfil hacia abajo */
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #a0a4b8;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+
+    svg {
+      opacity: 0.7;
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.03);
+      color: #ffffff;
+
+      svg {
+        opacity: 1;
+      }
+    }
+
+    /* Estado cuando estamos en esa ruta */
+    &.active {
+      background-color: rgba(139, 92, 246, 0.1);
+      color: #ffffff;
+      border: 1px solid rgba(139, 92, 246, 0.2);
+
+      svg {
+        opacity: 1;
+        color: #8b5cf6;
+      }
+    }
+  }
+}
+
+/* --- PERFIL --- */
+.user-profile {
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-top: 1px solid #1a1d2d;
+
+  .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #8b5cf6;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  .user-details {
+    .user-name {
+      margin: 0;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .user-role {
+      margin: 0;
+      font-size: 0.75rem;
+      color: #7c82a1;
+    }
+  }
+}

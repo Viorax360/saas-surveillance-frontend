@@ -1,0 +1,55 @@
+<div class="dashboard-wrapper">
+
+
+  @if (metrics$ | async; as metrics) {
+  <div class="kpi-grid">
+
+    <app-kpi-card title="Active Cameras" [value]="metrics.activeCameras.current + ' / ' + metrics.activeCameras.total"
+      [trendText]="'↑ ' + metrics.activeCameras.trend" [trendPeriod]="metrics.activeCameras.trendPeriod"
+      trendType="positive" iconTheme="blue">
+    </app-kpi-card>
+
+    <app-kpi-card title="Alerts (24h)" [value]="metrics.alerts.count" [trendText]="'↓ ' + metrics.alerts.trend"
+      [trendPeriod]="metrics.alerts.trendPeriod" trendType="negative" iconTheme="red">
+    </app-kpi-card>
+
+    <app-kpi-card title="Storage Used" [value]="metrics.storage.used"
+      [trendText]="metrics.storage.capacityRemains + ' capacity'" trendPeriod="remains" trendType="positive"
+      iconTheme="purple">
+    </app-kpi-card>
+
+    <app-kpi-card title="CPU Load" [value]="metrics.cpu.load" [trendText]="metrics.cpu.status" trendPeriod="status"
+      trendType="neutral" iconTheme="orange">
+    </app-kpi-card>
+
+  </div>
+
+  <h2 class="section-subtitle">Live Surveillance Feeds</h2>
+  }
+
+  <div class="grid-container">
+
+    @for (cam of cameras | async; track cam.id) {
+    <article class="camera-card">
+
+      <div class="card-top">
+        <app-status-badge [status]="cam.status"></app-status-badge>
+      </div>
+
+      <div class="card-bottom">
+        <h3 class="camera-title">{{ cam.id }}: {{ cam.name }}</h3>
+        <p class="camera-specs">
+          {{ cam.resolution }}
+          @if (cam.fps) { | {{ cam.fps }} FPS }
+        </p>
+      </div>
+
+    </article>
+    } @empty {
+    <div class="no-data-alert" style="color: #888;">
+      <p>Cargando cámaras...</p>
+    </div>
+    }
+
+  </div>
+</div>

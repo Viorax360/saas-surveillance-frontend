@@ -1,0 +1,78 @@
+.kpi-card {
+    background: #121424;
+    border: 1px solid #22263f;
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    height: 100%;
+
+    .kpi-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .kpi-title {
+            font-size: 0.85rem;
+            color: #a0a4b8;
+            font-weight: 500;
+        }
+
+        .icon-box {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            opacity: 0.8;
+
+            &.blue-icon {
+                background: rgba(59, 130, 246, 0.15);
+                border: 1px solid rgba(59, 130, 246, 0.3);
+            }
+
+            &.red-icon {
+                background: rgba(239, 68, 68, 0.15);
+                border: 1px solid rgba(239, 68, 68, 0.3);
+            }
+
+            &.purple-icon {
+                background: rgba(139, 92, 246, 0.15);
+                border: 1px solid rgba(139, 92, 246, 0.3);
+            }
+
+            &.orange-icon {
+                background: rgba(249, 115, 22, 0.15);
+                border: 1px solid rgba(249, 115, 22, 0.3);
+            }
+        }
+    }
+
+    .kpi-value {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin: 0.25rem 0;
+    }
+
+    .kpi-trend {
+        font-size: 0.75rem;
+        font-weight: 600;
+
+        &.positive {
+            color: #10b981;
+        }
+
+        &.negative {
+            color: #ef4444;
+        }
+
+        &.neutral {
+            color: #8b5cf6;
+        }
+
+        .period {
+            color: #646a85;
+            font-weight: 400;
+        }
+    }
+}

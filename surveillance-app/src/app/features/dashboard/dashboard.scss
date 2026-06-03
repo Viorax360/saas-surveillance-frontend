@@ -1,0 +1,174 @@
+.dashboard-wrapper {
+  padding: 2rem;
+  background-color: #0b0d19;
+  /* Fondo azul oscuro/negro del Control Center */
+  min-height: 100vh;
+  color: #ffffff;
+}
+
+/* --- KPIs GRID --- */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.kpi-card {
+  background: #121424;
+  /* Fondo oscuro de la tarjeta */
+  border: 1px solid #22263f;
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  .kpi-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .kpi-title {
+      font-size: 0.85rem;
+      color: #a0a4b8;
+      font-weight: 500;
+    }
+
+    /* Cuadritos de colores para los iconos */
+    .icon-box {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      opacity: 0.8;
+
+      &.blue-icon {
+        background: rgba(59, 130, 246, 0.15);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+      }
+
+      &.red-icon {
+        background: rgba(239, 68, 68, 0.15);
+        border: 1px solid rgba(239, 68, 68, 0.3);
+      }
+
+      &.purple-icon {
+        background: rgba(139, 92, 246, 0.15);
+        border: 1px solid rgba(139, 92, 246, 0.3);
+      }
+
+      &.orange-icon {
+        background: rgba(249, 115, 22, 0.15);
+        border: 1px solid rgba(249, 115, 22, 0.3);
+      }
+    }
+  }
+
+  .kpi-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0.25rem 0;
+  }
+
+  .kpi-trend {
+    font-size: 0.75rem;
+    font-weight: 600;
+
+    &.positive {
+      color: #10b981;
+    }
+
+    /* Verde */
+    &.negative {
+      color: #ef4444;
+    }
+
+    /* Rojo */
+    &.neutral {
+      color: #8b5cf6;
+    }
+
+    /* Morado */
+
+    .period {
+      color: #646a85;
+      /* Texto gris de contexto */
+      font-weight: 400;
+    }
+  }
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1.25rem;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .system-status-badge {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.camera-card {
+  /* Fondo oscuro con un sutil degradado que imita el feed de video apagado */
+  background: linear-gradient(135deg, #16192b 0%, #0f111e 100%);
+  border: 1px solid #22263f;
+  border-radius: 8px;
+  height: 180px;
+  /* Alto fijo para simular el cuadrante de video */
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: border-color 0.3s ease;
+
+  &:hover {
+    border-color: #3b4270;
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .card-bottom {
+    .camera-title {
+      margin: 0 0 0.25rem 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .camera-specs {
+      margin: 0;
+      font-size: 0.75rem;
+      color: #7c82a1;
+      /* Gris azulado para las especificaciones */
+    }
+  }
+}

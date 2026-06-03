@@ -1,0 +1,12 @@
+<div class="kpi-card">
+    <div class="kpi-header">
+        <span class="kpi-title">{{ title }}</span>
+        <div class="icon-box" [ngClass]="iconTheme + '-icon'"></div>
+    </div>
+
+    <div class="kpi-value">{{ value }}</div>
+
+    <div class="kpi-trend" [ngClass]="trendType">
+        {{ trendText }} <span class="period">{{ trendPeriod }}</span>
+    </div>
+</div>
