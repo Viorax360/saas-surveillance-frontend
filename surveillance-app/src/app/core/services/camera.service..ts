@@ -10,6 +10,7 @@ export interface Camera {
   fps: number | null;
   status: 'REC' | 'OFFLINE';
   motionDetected: boolean;
+  lastUpdate?: string;
 }
 
 // 1. NUEVA INTERFAZ PARA LAS MÉTRICAS

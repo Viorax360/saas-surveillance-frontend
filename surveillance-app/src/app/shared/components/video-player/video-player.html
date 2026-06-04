@@ -1,0 +1,22 @@
+<article class="video-card">
+
+    <div class="card-top">
+        <app-status-badge [status]="camera.status"></app-status-badge>
+    </div>
+
+    <div class="video-overlay"></div>
+
+    <div class="card-bottom">
+        <h3 class="camera-title">{{ camera.id }}: {{ camera.name | cameraName }}</h3>
+        <p class="camera-specs">
+            {{ camera.resolution }}
+            @if (camera.fps) { | {{ camera.fps }} FPS }
+        </p>
+        @if (camera.lastUpdate) {
+        <p class="last-update" style="font-size: 0.7rem; color: #646a85; margin-top: 4px;">
+            <i class="fa-solid fa-clock"></i> {{ camera.lastUpdate | timeAgo }}
+        </p>
+        }
+    </div>
+
+</article>
