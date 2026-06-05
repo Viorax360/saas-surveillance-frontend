@@ -1,0 +1,77 @@
+<div class="page-wrapper">
+
+    <header class="page-header">
+        <div class="header-info">
+            <h1>System Settings</h1>
+            <p class="subtitle">Global UI preferences and hardware configurations.</p>
+        </div>
+
+        <button class="primary-btn" (click)="saveSettings()">Save Changes</button>
+    </header>
+
+    <div class="settings-grid">
+
+        <div class="settings-card">
+            <h3>Camera & Hardware</h3>
+            <div class="card-content toggle-list">
+
+                <div class="toggle-row">
+                    <div class="toggle-info">
+                        <h4>Continuous Recording (24/7)</h4>
+                        <p>Save all video feeds to the cloud. May increase storage costs.</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" [checked]="preferences.continuousRecording"
+                            (change)="togglePreference('continuousRecording')">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <div class="toggle-row">
+                    <div class="toggle-info">
+                        <h4>AI Motion Tracking</h4>
+                        <p>Automatically draw bounding boxes around humans and vehicles.</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" [checked]="preferences.aiMotionTracking"
+                            (change)="togglePreference('aiMotionTracking')">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="settings-card">
+            <h3>System Configuration</h3>
+            <div class="card-content toggle-list">
+
+                <div class="toggle-row">
+                    <div class="toggle-info">
+                        <h4>Dark Mode</h4>
+                        <p>Force deep dark UI theme for low-light environments.</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" [checked]="preferences.darkMode" (change)="togglePreference('darkMode')"
+                            disabled>
+                        <span class="slider round disabled"></span>
+                    </label>
+                </div>
+
+                <div class="toggle-row">
+                    <div class="toggle-info">
+                        <h4>Auto-Update Firmware</h4>
+                        <p>Automatically install security patches on connected hardware.</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" [checked]="preferences.autoUpdate"
+                            (change)="togglePreference('autoUpdate')">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,214 @@
+.page-wrapper {
+    padding: 2.5rem;
+    background-color: #05070a;
+    min-height: 100vh;
+    color: #ffffff;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid #1a1d2d;
+    padding-bottom: 1.5rem;
+
+    h1 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin: 0 0 0.5rem 0;
+    }
+
+    .subtitle {
+        color: #7c82a1;
+        margin: 0;
+        font-size: 0.95rem;
+    }
+
+    .primary-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background-color: #8b5cf6;
+        color: #ffffff;
+        border: none;
+        padding: 0.75rem 1.25rem;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background-color: #7c3aed;
+            transform: translateY(-1px);
+        }
+    }
+}
+
+.settings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.5rem;
+}
+
+.settings-card {
+    background-color: #0b0d19;
+    border: 1px solid #22263f;
+    border-radius: 12px;
+    padding: 1.5rem;
+
+    h3 {
+        margin: 0 0 1.5rem 0;
+        font-size: 1.1rem;
+        color: #ffffff;
+        border-bottom: 1px solid #1a1d2d;
+        padding-bottom: 0.75rem;
+    }
+}
+
+/* --- ESTILOS DE PERFIL --- */
+.profile-card .card-content {
+    display: flex;
+    gap: 1.5rem;
+
+    .avatar-lg {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        font-weight: bold;
+        flex-shrink: 0;
+    }
+
+    .profile-info {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        label {
+            font-size: 0.75rem;
+            color: #7c82a1;
+            margin-bottom: 0.25rem;
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .locked-input {
+            background-color: #121424;
+            border: 1px solid #1a1d2d;
+            color: #a0a4b8;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: not-allowed;
+        }
+
+        .role-badge {
+            background-color: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            width: fit-content;
+            margin-top: 0.25rem;
+        }
+    }
+}
+
+/* --- LISTA DE TOGGLES --- */
+.toggle-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+
+    .toggle-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .toggle-info {
+            h4 {
+                margin: 0 0 0.25rem 0;
+                font-size: 0.95rem;
+                color: #ffffff;
+            }
+
+            p {
+                margin: 0;
+                font-size: 0.8rem;
+                color: #646a85;
+            }
+        }
+    }
+}
+
+/* ---  TOGGLE SWITCH  --- */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+
+    input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #22263f;
+        transition: .3s;
+
+        &:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: #7c82a1;
+            transition: .3s;
+        }
+
+        &.round {
+            border-radius: 34px;
+
+            &:before {
+                border-radius: 50%;
+            }
+        }
+
+        S &.disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+    }
+
+    input:checked+.slider {
+        background-color: #8b5cf6;
+    }
+
+    input:focus+.slider {
+        box-shadow: 0 0 1px #8b5cf6;
+    }
+
+    input:checked+.slider:before {
+        transform: translateX(20px);
+        background-color: white;
+    }
+}

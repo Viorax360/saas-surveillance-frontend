@@ -132,4 +132,43 @@
       color: #7c82a1;
     }
   }
+
+  .logout-mini-btn {
+    margin-left: auto;
+    /* Empuja el botón pegado a la derecha */
+    background: transparent;
+    border: none;
+    color: #4a4f6c;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: rgba(239, 68, 68, 0.1);
+      color: #ef4444;
+      /* Se pone rojo al pasar el mouse */
+    }
+  }
+}
+
+.profile-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  flex: 1;
+  /* Ocupa el espacio empujando el botón de logout a la derecha */
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  margin-left: -0.5rem;
+  /* Ajuste óptico */
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
 }

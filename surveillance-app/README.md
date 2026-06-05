@@ -71,7 +71,9 @@ src/
 │   ├── features/
 │   │   ├── auth/
 │   │   ├── cameras/
-│   │   └── dashboard/
+│   │   ├── dashboard/
+│   │   ├── profile/
+│   │   └── settings/
 │   │
 │   ├── layout/
 │   │   ├── header/
@@ -87,11 +89,10 @@ src/
 │   │   ├── directives/
 │   │   │   └── drag-drop/
 │   │   │
-│   │   └── pipes/
-│   │       ├── camera-name/
-│   │       └── time-ago/
-│   │
-│   ├── styles/
+│   │   ├── pipes/
+│   │   │   ├── camera-name/
+│   │   │   └── time-ago/
+│   │   └── styles/
 │   │
 │   ├── app.config.ts
 │   ├── app.html
@@ -99,7 +100,7 @@ src/
 │   ├── app.scss
 │   ├── app.spec.ts
 │   └── app.ts
-│
+├── environments/
 ├── index.html
 ├── main.ts
 └── styles.scss
