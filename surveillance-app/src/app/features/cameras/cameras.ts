@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cameras',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './cameras.html',
   styleUrl: './cameras.scss',
 })
-export class Cameras {}
+export class CamerasComponent { }

@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// Corregido: quitamos el ".service." del final
 import { CameraService, Camera, SystemMetrics } from '../../core/services/camera.service.';
 import { Observable } from 'rxjs';
 import { KpiCardComponent } from '../../shared/components/kpi-card/kpi-card';
