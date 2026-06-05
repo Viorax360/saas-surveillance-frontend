@@ -1,15 +1,16 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Camera, SystemMetrics } from '../models/camera.model';
+import { Camera, Metrics } from '../models/camera.model';
+import { environment } from '../../../environments/environments';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CameraService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/cameras';
-  private metricsUrl = 'http://localhost:3000/metrics'; // Nueva ruta
+  private apiUrl = `${environment.apiUrl}/cameras`;
+  private metricsUrl = `${environment.apiUrl}/metrics`; // Nueva ruta
 
 
   getCameras(): Observable<Camera[]> {
@@ -17,8 +18,8 @@ export class CameraService {
   }
 
   // 2. NUEVA FUNCIÓN PARA OBTENER LAS MÉTRICAS
-  getMetrics(): Observable<SystemMetrics> {
-    return this.http.get<SystemMetrics>(this.metricsUrl);
+  getMetrics(): Observable<Metrics> {
+    return this.http.get<Metrics>(this.metricsUrl);
   }
 
   //Añadir una cámara a la base de datos

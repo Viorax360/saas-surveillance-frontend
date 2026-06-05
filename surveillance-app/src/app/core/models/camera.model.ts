@@ -8,7 +8,7 @@ export interface Camera {
     lastUpdate?: string;
 }
 
-export interface SystemMetrics {
+export interface Metrics {
     activeCameras: { current: number; total: number; trend: string; trendPeriod: string };
     alerts: { count: number; trend: string; trendPeriod: string };
     storage: { used: string; capacityRemains: string };
