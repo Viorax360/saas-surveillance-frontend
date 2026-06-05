@@ -1,22 +1,35 @@
 import { Routes } from '@angular/router';
 // Borra la línea que dice "import { MainLayout }..." y cámbiala por esta:
 import { MainLayoutComponent } from './layout/main-layout/main-layout'; // Añade "Component"
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
+    // Redirigir la raíz al dashboard
+    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+
+    // Ruta PÚBLICA (El Login)
     {
         path: 'auth',
-        // Nota: Si generaste Auth como componente standalone, asegúrate de que la ruta al archivo y el nombre de la clase sean correctos
-        loadChildren: () => import('./features/auth/auth').then(m => m.Auth)
+        loadComponent: () => import('./features/auth/auth').then(m => m.AuthComponent)
     },
+
+    // Rutas PRIVADAS (Agrupadas dentro del Layout principal)
     {
         path: '',
-        component: MainLayoutComponent, // 2. Usamos el nombre exacto de la clase exportada
+        loadComponent: () => import('./layout/main-layout/main-layout').then(m => m.MainLayoutComponent),
+        canActivate: [authGuard], // <--- ¡AQUÍ ESTÁ EL BLINDAJE! Protege a todos sus hijos
         children: [
-            // 3. Ajustamos las rutas de los archivos (.component) y el nombre de las clases (m.DashboardComponent)
-            { path: 'dashboard', loadComponent: () => import('./features/dashboard/dashboard').then(m => m.DashboardComponent) },
-            { path: 'cameras', loadComponent: () => import('./features/cameras/cameras').then(m => m.Cameras) },
-            { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+            {
+                path: 'dashboard',
+                loadComponent: () => import('./features/dashboard/dashboard').then(m => m.DashboardComponent)
+            },
+            {
+                path: 'cameras',
+                loadComponent: () => import('./features/cameras/cameras').then(m => m.CamerasComponent)
+            }
         ]
     },
-    { path: '**', redirectTo: '' }
+
+    // Si escriben una URL que no existe, los mandamos al dashboard (y el guard decidirá qué hacer)
+    { path: '**', redirectTo: 'dashboard' }
 ];

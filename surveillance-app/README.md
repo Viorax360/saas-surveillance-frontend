@@ -104,9 +104,3 @@ src/
 ├── main.ts
 └── styles.scss
 ```
-
-
-
-    Lo que seguiría a partir de aquí es empezar a trabajar en la Página de Cámaras (/cameras), donde podríamos hacer que al dar clic en una tarjeta de video, se abra un reproductor más grande, o hacer un CRUD (Crear, Leer, Actualizar, Borrar) para poder añadir cámaras nuevas al sistema.
-
-¿Qué te entusiasma más: armar la vista detallada de las cámaras o construir un formulario para "Añadir Nueva Cámara"?
