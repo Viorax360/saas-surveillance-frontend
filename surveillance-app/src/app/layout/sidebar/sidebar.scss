@@ -154,3 +154,21 @@
     }
   }
 }
+
+.profile-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  flex: 1;
+  /* Ocupa el espacio empujando el botón de logout a la derecha */
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  margin-left: -0.5rem;
+  /* Ajuste óptico */
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}

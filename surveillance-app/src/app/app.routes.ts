@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-// Borra la línea que dice "import { MainLayout }..." y cámbiala por esta:
+// Borra la línea que dice "import { MainLayout }..." y cámbiala por esta:  
 import { MainLayoutComponent } from './layout/main-layout/main-layout'; // Añade "Component"
 import { authGuard } from './core/guards/auth.guard';
 
@@ -26,6 +26,14 @@ export const routes: Routes = [
             {
                 path: 'cameras',
                 loadComponent: () => import('./features/cameras/cameras').then(m => m.CamerasComponent)
+            },
+            {
+                path: 'settings',
+                loadComponent: () => import('./features/settings/settings').then(m => m.SettingsComponent)
+            },
+            {
+                path: 'profile',
+                loadComponent: () => import('./features/profile/profile').then(m => m.ProfileComponent)
             }
         ]
     },
