@@ -7,7 +7,7 @@
       "trendPeriod": "this week"
     },
     "alerts": {
-      "count": 3,
+      "count": 4,
       "trend": "12% decrease",
       "trendPeriod": "vs yesterday"
     },
@@ -62,6 +62,41 @@
       "status": "OFFLINE",
       "motionDetected": false,
       "lastUpdate": "2026-06-05T04:34:11.209Z"
+    }
+  ],
+  "profile": {
+    "name": "Administrator1",
+    "email": "admin@viorex.com",
+    "role": "Super Admin",
+    "avatar": "A"
+  },
+  "settings": {
+    "continuousRecording": false,
+    "aiMotionTracking": false,
+    "darkMode": true,
+    "autoUpdate": false
+  },
+  "notifications": [
+    {
+      "id": "1",
+      "message": "Motion detected in Server Room",
+      "time": "2m ago",
+      "isUnread": false,
+      "type": "alert"
+    },
+    {
+      "id": "2",
+      "message": "Camera CAM-04 went offline",
+      "time": "1h ago",
+      "isUnread": false,
+      "type": "warning"
+    },
+    {
+      "id": "3",
+      "message": "System firmware updated to v2.4.1",
+      "time": "3h ago",
+      "isUnread": false,
+      "type": "info"
     }
   ]
 }
