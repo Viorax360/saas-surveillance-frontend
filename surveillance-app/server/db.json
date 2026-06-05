@@ -27,7 +27,8 @@
       "resolution": "1080p",
       "fps": 30,
       "status": "REC",
-      "motionDetected": false
+      "motionDetected": false,
+      "lastUpdate": "2026-06-04T12:00:00Z"
     },
     {
       "id": "CAM-02",

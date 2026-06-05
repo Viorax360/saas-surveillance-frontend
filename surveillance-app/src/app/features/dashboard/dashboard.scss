@@ -172,3 +172,21 @@
     }
   }
 }
+
+/* Indicador visual de que se puede agarrar */
+app-video-player {
+  cursor: grab;
+}
+
+app-video-player:active {
+  cursor: grabbing;
+}
+
+/* El efecto fantasma cuando la estás arrastrando */
+.is-dragging {
+  opacity: 0.4;
+  transform: scale(0.98);
+  border: 1px dashed #8b5cf6 !important;
+  /* Borde morado de Viorex360 */
+  z-index: 10;
+}

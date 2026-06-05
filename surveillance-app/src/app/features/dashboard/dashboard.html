@@ -28,28 +28,15 @@
   }
 
   <div class="grid-container">
-
     @for (cam of cameras | async; track cam.id) {
-    <article class="camera-card">
 
-      <div class="card-top">
-        <app-status-badge [status]="cam.status"></app-status-badge>
-      </div>
+    <app-video-player [camera]="cam" [appDragDrop]="cam" (itemDropped)="onCameraReorder($event, cam)">
+    </app-video-player>
 
-      <div class="card-bottom">
-        <h3 class="camera-title">{{ cam.id }}: {{ cam.name }}</h3>
-        <p class="camera-specs">
-          {{ cam.resolution }}
-          @if (cam.fps) { | {{ cam.fps }} FPS }
-        </p>
-      </div>
-
-    </article>
     } @empty {
-    <div class="no-data-alert" style="color: #888;">
-      <p>Cargando cámaras...</p>
+    <div class="no-data-alert">
+      <p>No hay cámaras disponibles...</p>
     </div>
     }
-
   </div>
 </div>

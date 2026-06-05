@@ -59,26 +59,51 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
 ## Structure for angular-architecture
-src/app/
-├── core/               # El cerebro de la app (Solo se importa en AppModule)
-│   ├── guards/         # Protecciones de rutas (ej. si no está logueado, no entra)
-│   ├── interceptors/   # Modificadores de peticiones HTTP (para enviar el token de sesión)
-│   ├── models/         # Interfaces TypeScript (ej. Camera, User)
-│   └── services/       # Servicios globales que mantienen estado (AuthService, ApiService)
+```text
+src/
+├── app/
+│   ├── core/
+│   │   ├── guards/
+│   │   ├── interceptors/
+│   │   ├── models/
+│   │   └── services/
+│   │
+│   ├── features/
+│   │   ├── auth/
+│   │   ├── cameras/
+│   │   └── dashboard/
+│   │
+│   ├── layout/
+│   │   ├── header/
+│   │   ├── main-layout/
+│   │   └── sidebar/
+│   │
+│   ├── shared/
+│   │   ├── components/
+│   │   │   ├── kpi-card/
+│   │   │   ├── status-badge/
+│   │   │   └── video-player/
+│   │   │
+│   │   ├── directives/
+│   │   │   └── drag-drop/
+│   │   │
+│   │   └── pipes/
+│   │       ├── camera-name/
+│   │       └── time-ago/
+│   │
+│   ├── styles/
+│   │
+│   ├── app.config.ts
+│   ├── app.html
+│   ├── app.routes.ts
+│   ├── app.scss
+│   ├── app.spec.ts
+│   └── app.ts
 │
-├── layout/             # El esqueleto visual
-│   ├── header/         # Barra superior (perfil, notificaciones)
-│   ├── sidebar/        # Menú lateral para navegar entre Dashboard y Cámaras
-│   └── main-layout/    # El contenedor principal que une todo
-│
-├── shared/             # Las piezas de lego (Se importa en múltiples features)
-│   ├── components/     # Botones, modales, reproductores de video genéricos
-│   └── directives/     # Directivas personalizadas
-│
-└── features/           # Las páginas principales de tu negocio (Lazy Loaded)
-    ├── auth/           # Login, registro, recuperación de contraseña
-    ├── dashboard/      # Resumen general (creado)
-    └── cameras/        # Grilla de videos, configuraciones (creado)
+├── index.html
+├── main.ts
+└── styles.scss
+```
 
 
 
