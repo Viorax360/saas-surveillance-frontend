@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CameraService, Camera, SystemMetrics } from '../../core/services/camera.service.';
+import { CameraService } from '../../core/services/camera.service.';
 import { Observable } from 'rxjs';
 import { KpiCardComponent } from '../../shared/components/kpi-card/kpi-card';
 import { VideoPlayerComponent } from '../../shared/components/video-player/video-player';
 import { StatusBadgeComponent } from '../../shared/components/status-badge/status-badge';
 import { DragDropDirective } from '../../shared/directives/drag-drop/drag-drop.directive';
+import { Camera, SystemMetrics } from '../../core/models/camera.model';
 
 @Component({
   selector: 'app-dashboard',

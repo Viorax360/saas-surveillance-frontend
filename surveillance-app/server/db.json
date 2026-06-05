@@ -53,6 +53,15 @@
       "fps": null,
       "status": "OFFLINE",
       "motionDetected": false
+    },
+    {
+      "id": "CAM-756",
+      "name": "tujhdgdrg",
+      "resolution": "1080p",
+      "fps": 30,
+      "status": "OFFLINE",
+      "motionDetected": false,
+      "lastUpdate": "2026-06-05T04:34:11.209Z"
     }
   ]
 }

@@ -1,121 +1,173 @@
-<div class="cameras-container">
-  <div class="filter-bar">
-    <div class="search-box">
-      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-      <input type="text" placeholder="Search cameras by name, location or IP...">
+<div class="page-wrapper">
+
+  <header class="page-header">
+    <div class="header-info">
+      <h1>Camera Management</h1>
+      <p class="subtitle">View, configure, and add new surveillance hardware to the network.</p>
     </div>
-    
-    <div class="filter-actions">
-      <button class="filter-btn active">All</button>
-      <button class="filter-btn">Active</button>
-      <button class="filter-btn">Offline</button>
-      <button class="add-camera-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-        Add Camera
-      </button>
-    </div>
-  </div>
+
+    <button class="primary-btn" (click)="openAddCameraModal()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+      </svg>
+      Add New Camera
+    </button>
+  </header>
 
   <div class="cameras-grid">
-    <!-- Camera 1 -->
-    <div class="camera-card">
-      <div class="camera-thumbnail placeholder-1">
-        <span class="status-badge online">Active</span>
-        <button class="play-btn">
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-        </button>
-      </div>
-      <div class="camera-details">
-        <div class="camera-main-info">
-          <h4>CAM-01: Main Lobby</h4>
-          <span class="camera-location">Main Building - Floor 1</span>
-        </div>
-        <div class="camera-tech-info">
-          <div class="tech-item">
-            <span class="label">IP Address</span>
-            <span class="value">192.168.1.101</span>
-          </div>
-          <div class="tech-item">
-            <span class="label">Resolution</span>
-            <span class="value">1080p</span>
-          </div>
-        </div>
-      </div>
+    @for (cam of cameras$ | async; track cam.id) {
+
+    <div class="camera-wrapper" (click)="onCameraClick(cam)">
+      <app-video-player [camera]="cam"></app-video-player>
     </div>
 
-    <!-- Camera 2 -->
-    <div class="camera-card">
-      <div class="camera-thumbnail placeholder-2">
-        <span class="status-badge online">Active</span>
-        <button class="play-btn">
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+    } @empty {
+    <div class="empty-state">
+      <div class="icon-box">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+          <line x1="9" y1="13" x2="15" y2="13" />
+        </svg>
+      </div>
+      <h3>No cameras found</h3>
+      <p>Your network is empty. Add a new camera to start monitoring.</p>
+    </div>
+    }
+  </div>
+  @if (isModalOpen) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+
+      <div class="modal-header">
+        <h2>Add New Hardware</h2>
+        <button class="icon-btn" (click)="closeModal()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
         </button>
       </div>
-      <div class="camera-details">
-        <div class="camera-main-info">
-          <h4>CAM-02: Parking Lot A</h4>
-          <span class="camera-location">Outdoor - North Gate</span>
-        </div>
-        <div class="camera-tech-info">
-          <div class="tech-item">
-            <span class="label">IP Address</span>
-            <span class="value">192.168.1.102</span>
-          </div>
-          <div class="tech-item">
-            <span class="label">Resolution</span>
-            <span class="value">4K UHD</span>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Camera 3 -->
-    <div class="camera-card">
-      <div class="camera-thumbnail placeholder-3">
-        <span class="status-badge online">Active</span>
-        <button class="play-btn">
-          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+      <form [formGroup]="cameraForm" (ngSubmit)="onSubmit()" class="viorex-form">
+
+        <div class="form-group">
+          <label>Camera Name / Location</label>
+          <input type="text" formControlName="name" placeholder="e.g. North Gate Entrance">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Resolution</label>
+            <select formControlName="resolution">
+              <option value="720p">720p HD</option>
+              <option value="1080p">1080p FHD</option>
+              <option value="4K UHD">4K UHD</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Target FPS</label>
+            <input type="number" formControlName="fps">
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="cancel-btn" (click)="closeModal()">Cancel</button>
+          <button type="submit" class="primary-btn" [disabled]="cameraForm.invalid">Deploy Camera</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+  }
+  @if (selectedCamera) {
+  <div class="modal-overlay theater-mode" (click)="closeDetailsModal()">
+    <div class="theater-content" (click)="$event.stopPropagation()">
+
+      <div class="theater-header">
+        <div class="header-title">
+          <span class="live-dot"></span>
+          <h2>{{ selectedCamera.id }} - {{ selectedCamera.name }}</h2>
+        </div>
+        <button class="icon-btn close-btn" (click)="closeDetailsModal()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
         </button>
       </div>
-      <div class="camera-details">
-        <div class="camera-main-info">
-          <h4>CAM-03: Server Room</h4>
-          <span class="camera-location">Main Building - Floor 2</span>
-        </div>
-        <div class="camera-tech-info">
-          <div class="tech-item">
-            <span class="label">IP Address</span>
-            <span class="value">192.168.1.103</span>
-          </div>
-          <div class="tech-item">
-            <span class="label">Resolution</span>
-            <span class="value">1080p</span>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Camera 4 -->
-    <div class="camera-card">
-      <div class="camera-thumbnail placeholder-4">
-        <span class="status-badge offline">Offline</span>
-      </div>
-      <div class="camera-details">
-        <div class="camera-main-info">
-          <h4>CAM-04: Loading Dock</h4>
-          <span class="camera-location">Back Warehouse</span>
-        </div>
-        <div class="camera-tech-info">
-          <div class="tech-item">
-            <span class="label">IP Address</span>
-            <span class="value">192.168.1.104</span>
+      <div class="theater-body">
+
+        <div class="main-feed-container">
+          <div class="feed-overlay-ui">
+
+            <div class="top-bar">
+              <span class="badge" [ngClass]="selectedCamera.status.toLowerCase()">{{ selectedCamera.status }}</span>
+              <span class="time-stamp">{{ selectedCamera.resolution }} | {{ selectedCamera.fps || 30 }} FPS</span>
+            </div>
+
+            <div class="camera-navigation">
+              <button class="nav-btn" (click)="previousCamera($event)" title="Previous Camera">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+              <span class="nav-indicator">Switch Feed</span>
+              <button class="nav-btn" (click)="nextCamera($event)" title="Next Camera">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
+            </div>
+
           </div>
-          <div class="tech-item">
-            <span class="label">Resolution</span>
-            <span class="value">1080p</span>
-          </div>
         </div>
+
+        <aside class="telemetry-panel">
+          <h3>System Telemetry</h3>
+
+          <div class="data-block">
+            <label>Connection Protocol</label>
+            <p class="value success">WSS (Encrypted)</p>
+          </div>
+
+          <div class="data-block">
+            <label>Network Latency</label>
+            <p class="value">14 ms</p>
+          </div>
+
+          <div class="data-block">
+            <label>AI Analysis Logs</label>
+            <ul class="ai-logs">
+              <li><span class="time">11:42</span> Motion detected in Sector 4</li>
+              <li><span class="time">11:38</span> Human profile recognized (98%)</li>
+              <li><span class="time">11:15</span> Low light mode activated</li>
+            </ul>
+          </div>
+
+          <div class="ptz-controls">
+            <label>PTZ Override</label>
+            <div class="d-pad">
+              <button class="dir-btn up">▲</button>
+              <button class="dir-btn left">◀</button>
+              <button class="dir-btn center">●</button>
+              <button class="dir-btn right">▶</button>
+              <button class="dir-btn down">▼</button>
+            </div>
+          </div>
+        </aside>
+
       </div>
     </div>
   </div>
+  }
 </div>

@@ -1,34 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-// (Tu interfaz Camera actual se queda igual)
-export interface Camera {
-  id: string;
-  name: string;
-  resolution: string;
-  fps: number | null;
-  status: 'REC' | 'OFFLINE';
-  motionDetected: boolean;
-  lastUpdate?: string;
-}
-
-// 1. NUEVA INTERFAZ PARA LAS MÉTRICAS
-export interface SystemMetrics {
-  activeCameras: { current: number; total: number; trend: string; trendPeriod: string };
-  alerts: { count: number; trend: string; trendPeriod: string };
-  storage: { used: string; capacityRemains: string };
-  cpu: { load: string; status: string };
-}
+import { Camera, SystemMetrics } from '../models/camera.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CameraService {
+  private http = inject(HttpClient);
   private apiUrl = 'http://localhost:3000/cameras';
   private metricsUrl = 'http://localhost:3000/metrics'; // Nueva ruta
 
-  constructor(private http: HttpClient) { }
 
   getCameras(): Observable<Camera[]> {
     return this.http.get<Camera[]>(this.apiUrl);
@@ -37,5 +19,10 @@ export class CameraService {
   // 2. NUEVA FUNCIÓN PARA OBTENER LAS MÉTRICAS
   getMetrics(): Observable<SystemMetrics> {
     return this.http.get<SystemMetrics>(this.metricsUrl);
+  }
+
+  //Añadir una cámara a la base de datos
+  addCamera(newCamera: any): Observable<Camera> {
+    return this.http.post<Camera>(this.apiUrl, newCamera);
   }
 }
