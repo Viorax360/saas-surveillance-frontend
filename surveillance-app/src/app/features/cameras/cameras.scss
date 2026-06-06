@@ -549,3 +549,77 @@
     box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
   }
 }
+
+/* --- BARRA DE CONTROLES (Buscador y Filtros) --- */
+.controls-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 1.5rem;
+
+  .search-box {
+    flex: 1;
+    max-width: 450px;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    svg {
+      position: absolute;
+      left: 1rem;
+      color: #7c82a1;
+    }
+
+    input {
+      width: 100%;
+      background-color: #0b0d19;
+      border: 1px solid #22263f;
+      color: #ffffff;
+      padding: 0.85rem 1rem 0.85rem 2.75rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.2s ease;
+
+      &:focus {
+        border-color: #8b5cf6;
+        box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+      }
+
+      &::placeholder {
+        color: #4a4f6c;
+      }
+    }
+  }
+
+  .filter-group {
+    display: flex;
+    background-color: #0b0d19;
+    border: 1px solid #22263f;
+    border-radius: 8px;
+    padding: 0.25rem;
+
+    .filter-btn {
+      background: transparent;
+      border: none;
+      color: #7c82a1;
+      padding: 0.6rem 1.25rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        color: #ffffff;
+      }
+
+      &.active {
+        background-color: #22263f;
+        color: #ffffff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+}

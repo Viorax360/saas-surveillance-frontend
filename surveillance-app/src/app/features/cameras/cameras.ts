@@ -5,11 +5,13 @@ import { Observable } from 'rxjs';
 import { CameraService } from '../../core/services/camera.service.';
 import { VideoPlayerComponent } from '../../shared/components/video-player/video-player';
 import { Camera } from '../../core/models/camera.model';
+import { CameraFilterPipe } from '../../shared/pipes/camera-filter/camera-filter.pipe';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cameras',
   standalone: true,
-  imports: [CommonModule, VideoPlayerComponent, ReactiveFormsModule],
+  imports: [CommonModule, VideoPlayerComponent, ReactiveFormsModule, FormsModule, CameraFilterPipe],
   templateUrl: './cameras.html',
   styleUrl: './cameras.scss',
 })
@@ -20,6 +22,10 @@ export class CamerasComponent implements OnInit {
   cameras$: Observable<Camera[]> = this.cameraService.getCameras();
 
   allCameras: Camera[] = []; //Guardaremos la lista aquí para poder navegar
+
+  // --- VARIABLES PARA EL FILTRO ---
+  searchQuery: string = '';
+  activeFilter: string = 'ALL'; // Puede ser 'ALL', 'REC' u 'OFFLINE'
 
   // 2. Variables para controlar el Modal y el Formulario
   isModalOpen = false;
@@ -38,8 +44,12 @@ export class CamerasComponent implements OnInit {
     //el arreglo listo para la navegación
     this.cameras$.subscribe(data => this.allCameras = data);
   }
+  //FUNCION PARA CAMBIAR EL FILTRO
+  setFilter(status: string) {
+    this.activeFilter = status;
+  }
 
-  // Función temporal para nuestro futuro CRUD
+  // Funcion temporal para nuestro futuro CRUD
   openAddCameraModal() {
     this.cameraForm.reset({ resolution: '1080p', fps: 30 }); // Valores por defecto
     this.isModalOpen = true;
