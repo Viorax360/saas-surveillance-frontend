@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AppDataService } from '../../core/services/app-data.service';
+import { SystemSettings } from '../../core/models/app.model';
 
 @Component({
     selector: 'app-settings',
@@ -9,18 +11,21 @@ import { CommonModule } from '@angular/common';
     styleUrls: ['./settings.scss']
 })
 export class SettingsComponent {
-    preferences = {
-        darkMode: true,
-        autoUpdate: true,
-        continuousRecording: false,
-        aiMotionTracking: true
-    };
+    private appDataService = inject(AppDataService);
+    preferences!: SystemSettings;
 
-    togglePreference(key: keyof typeof this.preferences) {
+    ngOnInit() {
+        this.appDataService.getSettings().subscribe(data => this.preferences = data);
+    }
+
+    togglePreference(key: keyof SystemSettings) {
         this.preferences[key] = !this.preferences[key];
     }
 
     saveSettings() {
-        alert('System and Camera settings saved!');
+        // Enviamos los cambios reales a db.json
+        this.appDataService.updateSettings(this.preferences).subscribe(() => {
+            alert('System and Camera settings saved to database!');
+        });
     }
 }

@@ -35,33 +35,7 @@
       font-weight: 500;
     }
 
-    /* Cuadritos de colores para los iconos */
-    .icon-box {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      opacity: 0.8;
 
-      &.blue-icon {
-        background: rgba(59, 130, 246, 0.15);
-        border: 1px solid rgba(59, 130, 246, 0.3);
-      }
-
-      &.red-icon {
-        background: rgba(239, 68, 68, 0.15);
-        border: 1px solid rgba(239, 68, 68, 0.3);
-      }
-
-      &.purple-icon {
-        background: rgba(139, 92, 246, 0.15);
-        border: 1px solid rgba(139, 92, 246, 0.3);
-      }
-
-      &.orange-icon {
-        background: rgba(249, 115, 22, 0.15);
-        border: 1px solid rgba(249, 115, 22, 0.3);
-      }
-    }
   }
 
   .kpi-value {

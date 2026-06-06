@@ -30,15 +30,26 @@ export class AuthComponent {
 
     const { email, password } = this.loginForm.value;
 
-    // SIMULACIÓN DE BACKEND: 
-    // Si las credenciales son estas, lo dejamos pasar. Si no, mostramos error.
-    if (email === 'admin@viorex.com' && password === '1234') {
-      this.authService.login(); // Guarda el token falso
-      this.router.navigate(['/dashboard']); // Viajamos al panel
-    } else {
-      this.hasError = true;
-      // Quitamos el error después de 3 segundos
-      setTimeout(() => this.hasError = false, 3000);
-    }
+    // AHORA CONSUMIMOS EL SERVICIO (que va a la Fake API)
+    this.authService.login(email, password).subscribe({
+      next: (isValid) => {
+        if (isValid) {
+          // El backend confirmó que el usuario existe
+          this.router.navigate(['/dashboard']);
+        } else {
+          // El backend dice que los datos no coinciden
+          this.triggerError();
+        }
+      },
+      error: (err) => {
+        console.error('Error de conexión con el servidor', err);
+        this.triggerError();
+      }
+    });
+  }
+  // Pequeña función auxiliar para limpiar el código
+  private triggerError() {
+    this.hasError = true;
+    setTimeout(() => this.hasError = false, 3000);
   }
 }

@@ -16,8 +16,28 @@
     </button>
   </header>
 
+
+  <div class="controls-bar">
+    <div class="search-box">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" placeholder="Search by name or ID (e.g. CAM-01)..." [(ngModel)]="searchQuery">
+    </div>
+
+    <div class="filter-group">
+      <button class="filter-btn" [class.active]="activeFilter === 'ALL'" (click)="setFilter('ALL')">All Feeds</button>
+      <button class="filter-btn" [class.active]="activeFilter === 'REC'" (click)="setFilter('REC')">Active
+        (REC)</button>
+      <button class="filter-btn" [class.active]="activeFilter === 'OFFLINE'"
+        (click)="setFilter('OFFLINE')">Offline</button>
+    </div>
+  </div>
+
   <div class="cameras-grid">
-    @for (cam of cameras$ | async; track cam.id) {
+    @for (cam of (cameras$ | async) | cameraFilter:searchQuery:activeFilter; track cam.id) {
 
     <div class="camera-wrapper" (click)="onCameraClick(cam)">
       <app-video-player [camera]="cam"></app-video-player>
@@ -27,13 +47,13 @@
     <div class="empty-state">
       <div class="icon-box">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
-          <line x1="9" y1="13" x2="15" y2="13" />
+          stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
       </div>
-      <h3>No cameras found</h3>
-      <p>Your network is empty. Add a new camera to start monitoring.</p>
+      <h3>No results found</h3>
+      <p>Try adjusting your search or filters.</p>
     </div>
     }
   </div>

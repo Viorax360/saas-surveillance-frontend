@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  
+
   h2 {
     margin: 0;
     font-size: 1.25rem;
@@ -26,7 +26,8 @@
   gap: 8px;
   font-size: 0.75rem;
   font-weight: 600;
-  color: #10b981; /* Emerald 500 */
+  color: #10b981;
+  /* Emerald 500 */
   background-color: rgba(16, 185, 129, 0.1);
   padding: 4px 10px;
   border-radius: 100px;
@@ -47,10 +48,12 @@
     transform: scale(0.95);
     box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
   }
+
   70% {
     transform: scale(1);
     box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
   }
+
   100% {
     transform: scale(0.95);
     box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
@@ -58,6 +61,7 @@
 }
 
 .header-actions {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -76,28 +80,29 @@
   cursor: pointer;
   position: relative;
   transition: all 0.2s ease;
-  
+
   &:hover {
     color: #ffffff;
     background-color: rgba(255, 255, 255, 0.08);
     border-color: rgba(255, 255, 255, 0.15);
     transform: translateY(-1px);
   }
-  
+
   &:active {
     transform: translateY(0);
   }
-  
+
   .icon {
     width: 20px;
     height: 20px;
   }
-  
+
   .badge {
     position: absolute;
     top: -4px;
     right: -4px;
-    background-color: #ef4444; /* Red 500 */
+    background-color: #ef4444;
+    /* Red 500 */
     color: #ffffff;
     font-size: 0.7rem;
     font-weight: 700;
@@ -109,5 +114,184 @@
     justify-content: center;
     padding: 0 4px;
     border: 2px solid #0f172a;
+  }
+}
+
+/* --- MAGIA DEL DROPDOWN FLOTANTE --- */
+.notifications-dropdown {
+  position: absolute;
+  top: calc(100% + 15px);
+  /* Se pone justo debajo de la campana */
+  right: 0;
+  width: 340px;
+  background-color: #0b0d19;
+  /* Fondo oscuro de Viorex */
+  border: 1px solid #22263f;
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  overflow: hidden;
+  animation: slideDown 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #1a1d2d;
+  background-color: #121424;
+
+  h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: #ffffff;
+  }
+
+  .close-btn {
+    background: none;
+    border: none;
+    color: #7c82a1;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: color 0.2s;
+
+    &:hover {
+      color: #ef4444;
+    }
+  }
+}
+
+.dropdown-body {
+  max-height: 380px;
+  overflow-y: auto;
+
+  /* Scrollbar estético */
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #22263f;
+    border-radius: 4px;
+  }
+}
+
+.notif-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #1a1d2d;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &.unread {
+    background-color: rgba(139, 92, 246, 0.04);
+  }
+
+  .notif-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1a1d2d;
+    flex-shrink: 0;
+
+    /* Colores dinámicos según la severidad */
+    &.alert {
+      color: #ef4444;
+      background-color: rgba(239, 68, 68, 0.1);
+    }
+
+    &.warning {
+      color: #f59e0b;
+      background-color: rgba(245, 158, 11, 0.1);
+    }
+
+    &.info {
+      color: #3b82f6;
+      background-color: rgba(59, 130, 246, 0.1);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: currentColor;
+    }
+  }
+
+  .notif-content {
+    flex: 1;
+
+    p {
+      margin: 0 0 0.25rem 0;
+      font-size: 0.85rem;
+      color: #e2e8f0;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+
+    .time {
+      font-size: 0.75rem;
+      color: #7c82a1;
+    }
+  }
+
+  .unread-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #8b5cf6;
+    margin-top: 0.4rem;
+  }
+}
+
+.empty-state {
+  padding: 2rem;
+  text-align: center;
+  color: #7c82a1;
+  font-size: 0.9rem;
+}
+
+.dropdown-footer {
+  padding: 0.85rem;
+  text-align: center;
+  border-top: 1px solid #1a1d2d;
+  background-color: #121424;
+
+  a {
+    color: #7c82a1;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: color 0.2s;
+
+    &:hover {
+      color: #ffffff;
+    }
   }
 }

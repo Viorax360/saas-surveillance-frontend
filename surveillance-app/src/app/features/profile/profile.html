@@ -6,20 +6,22 @@
         </div>
     </header>
 
+    @if (profile$ | async; as profile) {
     <div class="settings-grid">
         <div class="settings-card profile-card">
             <h3>Account Profile</h3>
             <div class="card-content">
-                <div class="avatar-lg">A</div>
+                <div class="avatar-lg">{{ profile.avatar }}</div>
                 <div class="profile-info">
                     <label>Full Name</label>
-                    <input type="text" value="Administrator" readonly class="locked-input">
+                    <input type="text" [value]="profile.name" readonly class="locked-input">
                     <label>Email Address</label>
-                    <input type="email" value="admin@viorex.com" readonly class="locked-input">
+                    <input type="email" [value]="profile.email" readonly class="locked-input">
                     <label>System Role</label>
-                    <span class="role-badge">Super Admin</span>
+                    <span class="role-badge">{{ profile.role }}</span>
                 </div>
             </div>
         </div>
     </div>
+    }
 </div>

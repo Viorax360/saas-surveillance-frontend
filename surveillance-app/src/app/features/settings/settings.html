@@ -8,7 +8,7 @@
 
         <button class="primary-btn" (click)="saveSettings()">Save Changes</button>
     </header>
-
+    @if(preferences){
     <div class="settings-grid">
 
         <div class="settings-card">
@@ -74,4 +74,5 @@
         </div>
 
     </div>
+    }
 </div>
