@@ -1,9 +1,18 @@
+:host {
+  display: block;
+  position: relative;
+  z-index: 9999;
+  /* Poder absoluto sobre el resto de la página */
+}
+
 .header-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 100%;
   padding: 0 24px;
+  position: relative;
+  z-index: 900;
 }
 
 .page-title {
